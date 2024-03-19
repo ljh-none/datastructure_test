@@ -1,14 +1,14 @@
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 #define MAX 10
 
 void Display(int arr[MAX]) {
     for (int i = 0; i < MAX; i++) {
-        std::cout << arr[i] << " ";
+        printf("%d ", arr[i]);
     }
-    std::cout << std::endl;
+    printf("\n");
 }
 
 void bubble_sort(int ary[MAX], int n) {
@@ -39,7 +39,7 @@ int Partition(int arr[], int left, int right) {
     int pivot = arr[left];
     int low = left + 1;
     int high = right;
-    std::cout << "피벗: " << pivot << std::endl;
+    printf("피벗: %d\n", pivot);
     while (low <= high) {
         while (pivot >= arr[low] && low <= right) {
             low++;
@@ -76,17 +76,17 @@ int main() {
         temp1[i] = arr[i];
         temp2[i] = arr[i];
     }
-    std::cout << "원래 리스트" << std::endl;
+    printf("원래 리스트\n");
     Display(arr);
-    std::cout << "=======버블 정렬=======" << std::endl;
+    printf("=======버블 정렬=======\n");
     bubble_sort(arr, MAX);
     Display(arr);
-    std::cout << "=======삽입 정렬=======" << std::endl;
+    printf("=======삽입 정렬=======\n");
     insertion_sort(temp1, MAX);
     Display(temp1);
-    std::cout << "=======퀵 정렬=======" << std::endl;
+    printf("=======퀵 정렬=======\n");
     quick_sort(temp2, 0, MAX - 1);
-    std::cout << "최종 배열" << std::endl;
+    printf("최종 배열\n");
     Display(temp2);
     return 0;
 }
