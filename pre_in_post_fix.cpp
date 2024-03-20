@@ -128,7 +128,7 @@ void pop(stack *s)                      //스택 원소를 삭제하고 출력�
 
  
 
-void Display(stack s)
+void display(stack s)
 
 {
 
@@ -446,7 +446,7 @@ int main()
 
     printf("입력한 중위식 :");
 
-    Display(s);
+    display(s);
 
     printf("변환한 후위식 :");
 

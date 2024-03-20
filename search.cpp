@@ -83,13 +83,13 @@ tree->R = Delete(tree->R, tree->key);
 return tree;
 }
 
-void Display(Tree *tree)
+void display(Tree *tree)
 {
 if (tree != NULL)
 {
-Display(tree->L);
+display(tree->L);
 printf("%d->", tree->key);
-Display(tree->R);
+display(tree->R);
 }
 }
 
@@ -106,16 +106,16 @@ tree = Insert(tree, 6);
 tree = Insert(tree, 3);
 tree = Insert(tree, 9);
 tree = Insert(tree, 4);
-Display(tree);
+display(tree);
 printf("\n");
 
 tree = Delete(tree, 5);
-Display(tree);
+display(tree);
 printf("\n");
 tree = Delete(tree, 9);
-Display(tree);
+display(tree);
 printf("\n");
 tree = Delete(tree, 3);
-Display(tree);
+display(tree);
 printf("\n");
 }
