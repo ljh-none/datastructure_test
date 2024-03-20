@@ -24,13 +24,31 @@ space complexity
 
 ### sort
 1. selection sort
-time complexity : O(n^2)
+1-1. time complexity : O(n^2)
 (n-1)+(n-2)+(n-3)+...+1 번 비교
 -> (n-1)*n/2
 
+2. merge sort
+2 - 1. time complexity : O(nlogn)
+문제 분할 시 마다 부분문제로 이루어진 층이 하나 생긴다.
+더이상 분할하지 못할 때 까지 수행하면 k개의 층이 생긴다.
+
+입력이 n인 문제는 분할 때마다 반씩 줄어듦으로 마지막 층에서의 입력의 크기는 n/(2^k)임을 알 수 있다.
+이를 통해 층수는 log_2_n 임을 알 수 있다.
+
+각 층에서 합병 수행 시 O(n)만큼의 시간이 든다.
+그러므로 총 수행 시간은 log_2_n x O(n) = O(nlogn)
+
+2 - 2. 특징
+합병 결과를 저장할 입력 크기만큼의 배열이 별도로 필요 -> 공간 복잡도 증가
+외부 정렬, 정렬의 병렬화 시 사용
+
+3. quick sort
+
+
 1. bubble sort
 2. insert sort
-3. quick sort
+
 
 ### ~~fix
 1. prefix

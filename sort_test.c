@@ -66,10 +66,7 @@ void sort_merge(int *arr, int low, int high)
     int length = high - low + 1; // 임시 배열 크기
     int arr_temp[length];
 
-
     print_mylog(arr, left, mid, "left side");
-
-
     print_mylog(arr, right, high, "right side");
 
     // // 두 배열의 원소 중 작은 값 대입
@@ -112,14 +109,16 @@ void sort_merge(int *arr, int low, int high)
     }
 }
 
+
+
 int main()
 {
     int arr[MAX] = {5, 8, 3, 1, 10, 15, 2, 9, 12, 18};
     int arr_2[MAX] = {23, 78, 1, 98, 4, 8, 2, 76, 11};
     printf("original array : ");
-    display(arr_2);
-    sort_merge(arr_2, 0, MAX - 1);
+    display(arr);
+    sort_merge(arr, 0, MAX - 1);
     printf("sorted array : ");
-    display(arr_2);
+    display(arr);
     return 0;
 }
