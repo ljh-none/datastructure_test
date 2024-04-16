@@ -21,72 +21,29 @@
 - space complexity
 사용되는 메모리 크기
 
-### sort
-- selection sort
-1. time complexity : O(n^2)
-(n-1)+(n-2)+(n-3)+...+1 번 비교
--> (n-1)*n/2
-
-- merge sort
-1. time complexity : O(nlogn)
-문제 분할 시 마다 부분문제로 이루어진 층이 하나 생긴다.
-더이상 분할하지 못할 때 까지 수행하면 k개의 층이 생긴다.
-입력이 n인 문제는 분할 때마다 반씩 줄어듦 
--> 마지막 층의 입력은 n/(2^k)
--> 총 log_2_n개의 층
-각 층에서 합병 수행 시 O(n)만큼의 시간이 든다.
-그러므로 총 수행 시간은 log_2_n x O(n) = O(nlogn)
-2. 특징
-합병 결과를 저장할 입력 크기만큼의 배열이 별도로 필요 -> 공간 복잡도 증가
-외부 정렬, 정렬의 병렬화 시 사용
-
-- quick sort
-1. TC
-최악 : pivot이 항상 작을 때. 
-(n-1)+(n-2)+(n-3)+…+2+1 = n(n-1)/2 = O(n^2)
-최선 : like merge sort. O(nlogn)
-2. feature
-pivot 왼/오른쪽에 작은/큰 수 배치
--> pivot 선정하고
--> 배열의 끝으로 이동(주로 왼쪽)
--> 양 끝 인덱스에서 시작해서 수를 비교해가며 정렬
--> 교차 시 종료. pivot 복귀
-3. pivot 선정 방법
-random
-median of three
-median of median
-4. with insertion sort
-성능 향상 방법. quick sort는 입력크기가 클 때 성능 좋음
-sub problem의 크기가 작을 시 insertion sort 수행
-
-- bubble sort
-
-- insert sort
-
+### tree & graph
+graph와 tree의 차이
+그래프 : circle형성 가능
+Tree : ㄴㄴ
 
 ### divide & conquer
-conquer : 문제를 해결
+divide input(size n) -> subproblem(n/b) * a  
+conquer : 문제를 해결  
 
-- selection
-수행 과정 : 과제로 했으니 옮기셈요
-T.C :
-goob/bad divide : divide 시 크기가 input의 3/4를 넘으면 bad
-정렬에 n번 연산
-분할 후 크기 3/4 감소, 큰 한쪽에서 다시 selection 수행 -> 3/4n
-n + 3/4n + (3/4)^2n + .... + (3/4)^in
-= n(1 + 3/4 + (3/4)^2 + ... + (3/4)^i)
-= O(n)
-
+- merge sort : for linked list, multi processor 병렬화
+- quick sort : good for large input
+- insert sort
+- binary search
+- select problem(value search) : find median at data analyzation
 - closest pair
-수행 코드 짜보기
-T.C :
-방법 1. 전수조사 : nC2 -> O(n)
-방법 2. divide & conquer : 
 
-- 분할 정복이 부적절한 경우
-- 입력이 분할될 때마다 분할된 부분 문제의 입력 크기의 합이 분할되기 전의 입력 크기보다 커지는 경우
-분할 정복처럼 보이므로 주의 필요
-(Ex)n 번째의 피보나치 수를 구하기 - 사실상 n의 값 자체가 입력 크기이므로
+- 고려 사항
+1. 부적절한 경우
+input < sum of sub problem's input 일 때
+Ex | n 번째의 피보나치 수를 구하기 - 사실상 n의 값 자체가 입력 크기이므로
+
+2. 문제 특성 상 취합 과정이 효과적일 수 있다.
+Ex | most of geometry problem
 
 ### greedy
 가능한 해들 중에서 가장 좋은 (최대 또는 최소) 해를 찾는다 -> 최적화
@@ -94,21 +51,14 @@ T.C :
 greedy하게 선택할 값 결정 
 -> 이 값이 최소값(비용의 경우) 또는 최대값(이익의 경우)이 되는 값 찾기
 
-MST : minimum (weight) spanning tree, input = 1 connected component
+- minimum spanning tree
+- shortest path
+- fractional Knapsack : 최소의 비용으로 자원을 할당
+- set cover
+- job scheduling 
+- Huffman compression
 
-- MST - kruskal
-코드 짜보기
-
-- MST - prim
-
-- Dijkstra 
-주어진 출발점에서 시작
-출발점으로부터 최단 거리가 확정되지 않은 점들 중에서 출발점으로부터 가장 가까운
-점을 추가하고, 그 점의 최단 거리를 확정
-prim이랑 유사
-배열 생성, 시작점 s세팅(거리0) 나머지 무한
-
-
+---------------------------------------------------
 - Fractional Knapsack
 단위 무게 당 가치 계산 후 greedy -> 최적 해와 크게 차이 안남
 T.C : 물건 갯수 n개
@@ -157,7 +107,7 @@ Huffman tree 생성
 100 -> 확
 101 -> 확
 
-### dynamic programming algorithm
+### dynamic programming
 - All Pairs Shortest Paths
 
 chained multiplex mul
@@ -167,17 +117,14 @@ chained multiplex mul
 옆 위 에서 내려오는건 무조건 +1임. 대각선의경우만 생각하면댐.
 왜냐 옆으로가는건 그냥 문자추가. 내려오는건 문자제거?
 
+
+
+
+  
+--------------------  
 ### ~~fix
 1. prefix
 2. infix
 3. postfix
 
-### search
-binary search
 
-### linked list
-
-### tree
-graph와 tree의 차이
-그래프 : circle형성 가능
-Tree : ㄴㄴ

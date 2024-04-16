@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MAX 10
+#define ARRAY_MAX 10
 
 void display(int *arr)
 {
     printf("[ ");
-    for (int i = 0; i < MAX; i++)
+    for (int i = 0; i < ARRAY_MAX; i++)
     {
         printf("%d ", arr[i]);
     }
@@ -35,9 +35,9 @@ void swap(int *a, int *b)
 
 void sort_selection(int *arr)
 { // 가장 베이직한 정렬
-    for (int left = 0; left < MAX - 2; left++)
+    for (int left = 0; left < ARRAY_MAX - 2; left++)
     {
-        for (int right = left + 1; right < MAX - 1; right++)
+        for (int right = left + 1; right < ARRAY_MAX - 1; right++)
         { // Right인덱스가 left포함 왼편을 제외한 나머지를 쭉 돌면서 작은거 교환
             if (arr[left] > arr[right])
                 swap(&arr[left], &arr[right]);
@@ -129,13 +129,13 @@ void sort_quick(int *arr, int low, int high)
     // swap pivot to start of array
     swap(&arr[low], &arr[pivot]); // pivot을 배열의 맨 앞으로 땡긴다.
     pivot = low++;                // pivot의 값을 갱신한다(pivot의 위치가 이동했으므로), low를 정렬시작지점으로 위치시킨다.
-    //print_mylog(arr, 0, MAX - 1, "after swap");
+    //print_mylog(arr, 0, ARRAY_MAX - 1, "after swap");
     //printf("[log] low : %d, high : %d pivot : %d\n", low, high, pivot);
 
     // 3. sort
     while (1)
     {
-        for (; low < MAX; low++) // 0~9
+        for (; low < ARRAY_MAX; low++) // 0~9
         {
             if (arr[pivot] < arr[low])
                 break;
@@ -152,7 +152,7 @@ void sort_quick(int *arr, int low, int high)
         if (low < high)
         {
             swap(&arr[low], &arr[high]);
-            //print_mylog(arr, 0, MAX - 1, "ing..");
+            //print_mylog(arr, 0, ARRAY_MAX - 1, "ing..");
         }
         else
             break;
@@ -162,7 +162,7 @@ void sort_quick(int *arr, int low, int high)
     // 4. swap pivot to own
     swap(&arr[pivot], &arr[high]); // 피봇을 high자리에 위치.
     pivot = high;                  // pivot 값 갱신.
-    //print_mylog(arr, 0, MAX - 1, "after sort");
+    //print_mylog(arr, 0, ARRAY_MAX - 1, "after sort");
     // 이후 피봇 기준 왼오른쪽이 정렬된 상태.
     // 또한 이 때 피봇은 완전히 정렬 되었을 때 기준으로 제자리에 위치하게 됨.
 
@@ -205,11 +205,11 @@ void bubble_sort(int *arr, int n)
 int main()
 {
     system("clear");
-    int arr[MAX] = {5, 8, 3, 1, 10, 15, 2, 9, 12, 18};
-    int arr_2[MAX] = {23, 78, 1, 98, 4, 8, 2, 76, 11};
+    int arr[ARRAY_MAX] = {5, 8, 3, 1, 10, 15, 2, 9, 12, 18};
+    int arr_2[ARRAY_MAX] = {23, 78, 1, 98, 4, 8, 2, 76, 11};
     printf("original array : ");
     display(arr);
-    sort_quick(arr, 0, MAX - 1);
+    sort_quick(arr, 0, ARRAY_MAX - 1);
     printf("sorted array : ");
     display(arr);
     return 0;
