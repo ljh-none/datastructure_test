@@ -171,6 +171,37 @@ void sort_quick(int *arr, int low, int high)
     sort_quick(arr, pivot + 1, high_);
 }
 
+void sort_insert(int *arr, int n)
+{
+    int i, j;
+    int next;
+    for (i = 1; i < n; i++)
+    {
+        next = arr[i];
+        for (j = i - 1; j >= 0 && next < arr[j]; j--)
+        {
+            arr[j + 1] = arr[j];
+        }
+        arr[j + 1] = next;
+    }
+}
+
+void bubble_sort(int *arr, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (arr[i] > arr[j])
+            {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+}
+
 int main()
 {
     system("clear");

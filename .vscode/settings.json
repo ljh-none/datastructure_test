@@ -2,6 +2,7 @@
     "files.associations": {
         "stdio.h": "c",
         "time.h": "c",
-        "ios": "c"
+        "ios": "c",
+        "__locale": "c"
     }
 }
