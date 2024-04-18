@@ -5,9 +5,9 @@
 기본적인 연산 횟수(비교, 할당, 계산, R/W 등)를 입력 크기인 n단위로 표현
 알고리즘의 효율성을 나타내는 지표
 최악과 평균의 경우만 생각
-
-- 계수 생략, 차수에 대해서만 고려
+계수 생략, 차수에 대해서만 고려
 시간 복잡도를 쓰는 이유는 거대한 시스템에서 n이 충분히 클 때의 상황을 보려는 것. 따라서 계수의 영향이 미미.
+=> 즉, 미지수에 대한 연산 횟수만 고려한다!
 
 - Big oh
 모든 n ≥ n0에 대해서, f(n) ≤ cg(n)이 성립하는 양의 상수 c와 n0가 존재하면, f(n) =O(g(n))이다.
@@ -58,59 +58,33 @@ greedy하게 선택할 값 결정
 - job scheduling 
 - Huffman compression
 
----------------------------------------------------
-- Fractional Knapsack
-단위 무게 당 가치 계산 후 greedy -> 최적 해와 크게 차이 안남
-T.C : 물건 갯수 n개
-단위무게 가치 O(n)
-가치 순 정렬 O(nlogn)
-while문 O(n)
-나머지 상수 O(1)
-=> 다더하면 O(nlogn)
-
-- set cover problem
-U : n개의 원소 집합.
-F : U의 부분집합들을 원소로 하는 집합. F의 크기 = c*n
-=> F에서 선택한 set의 수를 최소화 하여 U를 만들어라
-solution 1 : 2^n만큼의 경우의 수 모두 따진다 -> O(2^n) -> 최적 해 발견
-solution 2 : 근사 해 찾기
-신도시학교 tc -> 코드 짜볼 것
-while문 n
-set이 처음부터 sorted list라고 가정, 교집합 산출 시 2n, O(n)
-
-virus signature?
-
-- job scheduling
-Earliest start time first - realtime system
-Earliest finish time first - realtime system
-Shortest job first 
-Longest job first
-1빼고 조금 별로
-
-- Huffman compression
-ASCI code : 문자 하나 당 8bit
-문자 별 빈도수 산출
--> 빈번한 문자에는 짧은 이진코드
--> 드문 문자에는 긴 이진 코드
-prefix property 적용
-    글자가 같을 경우 - 글자구분가능
-    다를경우 - 어디서부터 어디까지가 문자 하나인지 구분 불가능
-Huffman tree 생성
-이를 기반으로 각 문자에 binary code 할당
-해당 코드로 압축한 파일과 문자 별 빈도수를 송신
--> 수신측에서도 Huffman tree 생성 후 압축해제
-
-0 -> A확정
-1
-11 -> C확정
-10 -> 0시작인 A가 이미 있으므로 넘어간다
-100 -> 확
-101 -> 확
-
 ### dynamic programming
-- All Pairs Shortest Paths
+input size가 작은 sub problems 해결
+–> 그 해들을 "이용"하여 큰 sub problems 해결
+–> 최종적으로 이 해들을 이용해 원래 문제 해결
 
-chained multiplex mul
+기본적으로 모든 경우의 해를 구하되, 이전에 구한 해는 다시 계산하지 않음.
+
+- All Pairs Shortest Paths
+- chained multiplex mul
+- edit distance
+- 0-1 knap problem
+물건 n개
+물건 index i
+물건 무게 w
+물건 가치 v
+배낭 총 용량 C
+sub program 
+
+matrix 생성
+-> row : 물건 index (0~i)
+-> column : 물건 weight의 합 (0~C)
+-> element's value : 가치
+
+
+- coin change
+
+----------------------------
 
 - edit distance
 3 operation : insert, delete, substitute
@@ -118,10 +92,8 @@ chained multiplex mul
 왜냐 옆으로가는건 그냥 문자추가. 내려오는건 문자제거?
 
 
-
-
-  
 --------------------  
+
 ### ~~fix
 1. prefix
 2. infix

@@ -1,12 +1,16 @@
 ### binary search
 
 ### selection
-- selection
-수행 과정 : 과제로 했으니 옮기셈요
-T.C :
-goob/bad divide : divide 시 크기가 input의 3/4를 넘으면 bad
-정렬에 n번 연산
-분할 후 크기 3/4 감소, 큰 한쪽에서 다시 selection 수행 -> 3/4n
-n + 3/4n + (3/4)^2n + .... + (3/4)^in
-= n(1 + 3/4 + (3/4)^2 + ... + (3/4)^i)
-= O(n)
+quick sort와 유사.
+k번째로 큰 숫자는 index가 k-1 이므로 해당 인덱스가 피봇이 될 때까지? 분할
+
+- goob/bad divide
+divide 시 sub problem의 크기가 input의 3/4를 넘으면 bad
+
+- T.C
+a. good divide -> 3/4 subproblem에서만 탐색 시
+n + 3/4n + (3/4)^2n + .... + ((3/4)^i)n
+= n(1 + 3/4 + (3/4)^2 + ... + (3/4)^i) = O(n)
+b. good or bad divd의 경우
+2번에 한 번 꼴로 good 출현 -> O(2)
+=> a*b = 2O(n) = O(n)
