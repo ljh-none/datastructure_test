@@ -1,7 +1,11 @@
-# path problem
+# graph, tree, path
 
 ### 참고 링크
 https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/
+
+* graph와 tree의 차이  
+그래프 : circle형성 가능  
+Tree : ㄴㄴ
 
 ### MST
 minimum (weight) spanning tree  

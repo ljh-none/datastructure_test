@@ -28,7 +28,7 @@ while (length of queue > 1)
     3. 빈도수가 가장 적은 node 2개 추출
     4. 이를 자식으로 둔 parent node 생성. 빈도수는 두 node의 합
     5. parent node를 enqueue
-![alt text](image.png)
+![alt text](../images/image-4.png)
 
 - 압축률
 빈도수 * binary code의 bit수

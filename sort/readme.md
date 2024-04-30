@@ -61,7 +61,7 @@ median of three
 median of median
     best : O(nlogn)
     worst : 총 (n-1)/4번 분할 -> O(n^2) //사진 참고
-    ![alt text](image.png)
+    ![alt text](../images/image-5.png)
 
 - with insertion sort
 성능 향상 방법. quick sort는 입력크기가 클 때 성능 좋음
