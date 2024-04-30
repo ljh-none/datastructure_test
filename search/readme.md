@@ -1,4 +1,7 @@
+### n-th number search
+
 ### binary search
+divide한 두 블록 중 한 쪽 블럭만 탐색
 
 ### selection
 quick sort와 유사.
@@ -14,3 +17,4 @@ n + 3/4n + (3/4)^2n + .... + ((3/4)^i)n
 b. good or bad divd의 경우
 2번에 한 번 꼴로 good 출현 -> O(2)
 => a*b = 2O(n) = O(n)
+

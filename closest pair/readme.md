@@ -1,5 +1,6 @@
 # closest pair
 input : 2차원 평면 상 n개의 점
+output : a point
 
 - simple solution : 모든 경우의 수
 O(nC2) = O(n^2)
@@ -38,10 +39,18 @@ a. x, y축 정렬 : O(nlogn) * 2
 b. 분할 과정으로 k개의 층 생성. k=logn  (input == n개의 point)
 c. 이 때, 각 층에서의 연산 : O(n)
     c-1. pair 수가 3개 이하일 경우 closest pair 계산 -> O(3)    // 상수
-    c-2. 중간 영역에서 closest pair 계산 -> 상수 ~ O(n)         //최악의 경우 n개
+    c-2. y_sort_array에서 middle area에 해당하는 point를 따온다 -> O(n)
+    c-2. 따온 points에서 closest pair 계산 -> 상수         //최악의 경우 n개
 => a+b*c = O(nlogn)     //상수, 계수 제하였다.
 
+- 모범답안
 최초로 y-좌표로 정렬하기 위해 O(n log n)이 소모되지만,
 이후에는 [분할에 O(n)만 추가되고] y-좌표로 정렬할 필요가 없어지므로 각 층의 수행시간은 O(n)이 된다. 
 층 개수가 log n이므로 분할 정복에 사용되는 시간복잡도는 O(n log n)이 된다. 
 정렬시간과 통합하면 전체 시간복잡도는 O(n log n)으로 동일하다.
+
+- 교수님 답변
+sorted y array가 있고, 중간 영역 범위가 x1 ~ x2로 주어졌을 때,
+sorted y array 전체를 훑으면서 x1~x2사이에 있는지를 체크
+이 때 O(n)의 시간이 걸린다. (sorted y array 크기가 n이므로)
+그리고 최단 거리 구하는 시간은 상수 시간이다.

@@ -31,10 +31,11 @@ number of edge on spanning tree : n-1
 
 ### kruskal - MST
 - 절차
-    1. 가중치 오름차순 정렬. create empty tree
-    2. 1 edge fetch, cycle이 생성되는지 체크 
-    3. 생성되지 않는다면 tree에 추가
-    4. tree's edge가 node - 1이 될 때까지 반복
+    1. 가중치 오름차순 정렬. 
+    2. create empty tree
+    3. 1 edge fetch, cycle이 생성되는지 체크 -> disjoint set
+    4. 생성되지 않는다면 tree에 추가
+    5. tree's edge가 node - 1이 될 때까지 반복
 
 - 추가된 edge가 cycle을 형성하는지 판별하는 방법
 set problem -> disjoint set
@@ -57,7 +58,7 @@ distance array : tree 바깥의 volts 중 가장 가까운 volts에 대한 dista
     D[others] = null
 3. start while
     3-1. tree에 distance가 최소인 volt와의 edge 추가
-    3-2. update distance array
+    3-2. update distance array - 경유노선이 직행보다 빠르다면
 
 - prim이 cycle을 만들지 않는 이유
 tree에 volt 추가 시 항상 tree 바깥의 volt만 추가하므로 cycle의 형성 여부를 고려하지 않아도 된다.
@@ -106,6 +107,9 @@ start ~ end의 distance와
 start ~ waypoint ~ end의 distance 중 최단 경로 선택.
 이를 점 3개의 경우부터 시작하여 키워나감
 
+matrix에 거리 저장
+D^k[i,j] : k
+
 - pseudo code
 2dim array distance     //평면 상 좌표이므로
 init distance
@@ -116,3 +120,8 @@ for way_point in range(1, n)
     for i in range(1, n)    // 단, waypoint != i
         for j in range(1, n)    // 단, waypoint != j, i
             D[i, j] = min(D[i, way_point]+D[way_point, j], D[i, j])
+
+
+모든 점들간의 거리를 나타내는 행렬 D^4를 구하는 것을 최종 목표라고 할 때, (여기서 D^4는 D의 위 첨자가 4라는 것을 의미한다.)
+a. D^0를 구하시오.
+b. D^1을 구하시오.
