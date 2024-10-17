@@ -102,29 +102,29 @@ void union_size(int i, int j) {
     if (irep == jrep)
         return;
  
-    // Get the size of i’s tree
+    // Get the SIZE of i’s tree
     int isize = Size[irep];
  
-    // Get the size of j’s tree
+    // Get the SIZE of j’s tree
     int jsize = Size[jrep];
  
-    // If i’s size is less than j’s size
+    // If i’s SIZE is less than j’s SIZE
     if (isize < jsize) {
  
         // Then move i under j
         Parent[irep] = jrep;
  
-        // Increment j's size by i's size
+        // Increment j's SIZE by i's SIZE
         Size[jrep] += Size[irep];
     }
  
-    // Else if j’s size is less than i’s size
+    // Else if j’s SIZE is less than i’s SIZE
     else {
  
         // Then move j under i
         Parent[jrep] = irep;
  
-        // Increment i's size by j's size
+        // Increment i's SIZE by j's SIZE
         Size[irep] += Size[jrep];
     }
 }

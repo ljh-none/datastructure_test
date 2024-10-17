@@ -70,7 +70,7 @@ void insert_middle(struct Node **head_p, int pos, int data)
         }
         current = current->next;
     }
-    //끝 노드일 경우
+    // 끝 노드일 경우
     if (current->next == NULL)
     {
         printf("tail node, use insert_tail func\n");
@@ -123,19 +123,42 @@ void search(struct Node *head, int data)
     return;
 }
 
-void delete(struct Node *head)
+struct Node *delete_head(struct Node *head)
 {
-    // move to last node
+    if (head == NULL)
+    {
+        return NULL;
+    }
+    struct Node *temp = head;
+    head = head->next;
+    free(temp);
+    return head;
+}
+
+struct Node *delete_tail(struct Node *head)
+{
+    // head null check
+    if (head == NULL)
+    {
+        return NULL;
+    }
+
+    // move to tail
     struct Node *current = head;
-    while (current->next != NULL)
+    while (current->next->next != NULL)
     {
         current = current->next;
     }
-    printf("delete %d\n", current->data);
-
-    // delete
-    free(current);
+    free(current->next);
+    current->next = NULL;
+    return head;
 }
+
+struct Node *delete_middle(struct Node *head)
+{
+    //알아해라
+}
+
 
 int main()
 {
@@ -146,9 +169,11 @@ int main()
     insert_tail(head, 3);
     insert_tail(head, 4);
     print_list(head);
-    insert_middle(&head, 1, 100);
-    insert_tail(head, 5);
-    insert_tail(head, 6);
+    head = delete_tail(head);
+    insert_tail(head, 0);
+    insert_tail(head, 1);
+    insert_tail(head, 2);
+    insert_tail(head, 3);
+    insert_tail(head, 4);
     print_list(head);
-    // search(head, 7);
 }
