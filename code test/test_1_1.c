@@ -38,7 +38,7 @@ void sort_insert(int *arr, int n)
     }
 }
 
-int maxBudgetDept(int *arr, int length, int budget)
+int solution(int *arr, int length, int budget)
 {
     // 1. 정렬
     sort_insert(arr, length);
@@ -64,8 +64,8 @@ int maxBudgetDept(int *arr, int length, int budget)
 
 int main()
 {
-    int d[] = {1,3,2,5,4}; // 1~100
-    int budget = 10;        // 1~100000
+    int d[] = {1, 3, 2, 5, 4}; // 1~100
+    int budget = 10;           // 1~100000
 
     int num = maxBudgetDept(d, 5, budget);
     return 0;

@@ -3,7 +3,7 @@
 
 struct Node
 {
-    int data;
+    int value;
     struct Node *next;
 };
 
@@ -17,7 +17,7 @@ struct Queue
 void enqueue(struct Queue **que_p, int data)
 {
     struct Node *node = malloc(sizeof(struct Node));
-    node->data = data;
+    node->value = data;
     if ((*que_p)->rear == NULL)
     {
         (*que_p)->rear = (*que_p)->front = node;

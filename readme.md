@@ -103,10 +103,23 @@ answer가 yes or no인 문제.
 
 ## Data Structure
 - array, linked list
-- matrix, Grid
+-> two pointer, sliding window
+투 포인터 알고리즘의 일반적인 수행 절차
+① 리스트의 시작 위치에 첫 번째 포인터와 두 번째 포인터를 설정
+② 두 포인터 사이의 구간 내 데이터를 조사하고 조건을 확인
+➢ 조건을 만족할 경우, 원하는 결과를 얻었으므로 알고리즘을 종료
+➢ 조건을 만족하지 않을 경우, 첫 번째 또는 두 번째 포인터를 이동
+③ 다시 2번 단계로 돌아가 반복
+④ 포인터가 리스트의 범위를 벗어나면 알고리즘을 종료
 - stack
+LIFO
+DFS, back tracking, recursion
 - queue
+FIFO
+BFS, 대기열, 순차 처리
+- matrix, Grid
 - hash
+
 - heap
 binary heap? -> index만으로 트리구성가능
 ➢ 이진 힙 (Binary Heap)

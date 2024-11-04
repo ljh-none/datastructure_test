@@ -28,20 +28,54 @@ key : 신고한 사람
 value : 정지먹인 사람 수
 
 */
-
-
+#include <algorithm>
 #include <iostream>
-#include <unordered_map>
+#include <sstream>
 #include <string>
+#include <vector>
+#include <map>
 
-void solution3(std::string *id_list, std::string *report, int k, int length)
+using namespace std;
+
+vector<int> solution(vector<string> id_list, vector<string> report, int k)
 {
-    std::unordered_map<std::string, std::pair<int, int> > hash;
-    std::unordered_map<std::string, std::[] > hash;
+    map<string, vector<string>> table; // key : 신고 당한 사람 value : 신고한 사람(들의 집합/리스트)
+    map<string, int> count;            // key : 신고한 사람 value : 정지먹인 사람 수
 
-    for (int i = 0; i < length; i++)
+    // 1. write table
+    for (int i = 0; i < report.size(); i++)
     {
+        istringstream iss(report[i]);
+        string isReport;
+        iss >> isReport;
+        string isReported;
+        iss >> isReported;
 
+        auto it = find(table[isReported].begin(), table[isReported].end(), isReport);
+        if (it != table[isReported].end())
+            continue;
+        table[isReported].push_back(isReport);
     }
-    // return : 각 유저별로 처리 결과 메일을 받은 횟수를 배열에 담아 반환
+
+    // 2. write count
+    for (auto it = table.begin(); it != table.end(); ++it)
+    {
+        if (it->second.size() < k)
+            continue;
+
+        vector<string> temp = it->second;
+        for (int i = 0; i < temp.size(); i++)
+        {
+            count[temp[i]]++;
+        }
+    }
+
+    // 3. write answer
+    vector<int> answer;
+    for (int i = 0; i < id_list.size(); i++)
+    {
+        answer.push_back(count[id_list[i]]);
+    }
+
+    return answer;
 }

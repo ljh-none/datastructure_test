@@ -39,7 +39,7 @@ int solution1(int n)
         }
         else if (sum == n)
         {
-            printf("left : %d, right : %d\n", ary[left], ary[right]);
+            // printf("left : %d, right : %d\n", ary[left], ary[right]);
             count++;
             left--;
             right--;
@@ -49,12 +49,14 @@ int solution1(int n)
             left--;
         }
     }
-    printf("count : %d\n", count);
+    printf("%d", count);
     return count;
 }
 
 int main()
 {
-    solution1(15);
+    int number;
+    scanf("%d", &number);
+    solution1(number);
     return 0;
 }

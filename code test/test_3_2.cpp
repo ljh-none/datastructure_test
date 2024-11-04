@@ -42,30 +42,53 @@ outputs : 선곡 리스트
 
 해시 구성, 각 기준에 대응할 해시 테이블 구성은 다음과 같다
 1. 장르 - 속한 노래들의 총 재생 횟수
-2. 장르 - id, 재생 횟수 => 장르 = key, 튜플 = value 
+2. 장르 - id, 재생 횟수 => 장르 = key, 튜플 = value
 해시 2에 추가될 때마다 해시 1을 업뎃하면 한번의 for문으로 가능
 
 */
-
-#include <iostream>
-#include <unordered_map>
 #include <string>
+#include <vector>
+#include <map>
+#include <algorithm>
 
-void solution2()
+using namespace std;
+
+bool cmp(pair<string, int> a, pair<string, int> b)
 {
-
+    return a.second < b.second;
 }
 
-int main()
+vector<int> solution(vector<string> genres, vector<int> plays)
 {
-    std::string genres[5] = {"classic", "pop", "classic", "classic", "pop"};
-    int plays[5] = {500, 600, 150, 800, 2500};
+    map<string, int> play_total;               // key : 장르, value : 총 재생 횟수
+    map<string, vector<pair<int, int>>> table; // key : 장르, value : {재생 횟수, 고유번호}
 
-    std::unordered_map<std::string, std::pair<int, int> > hash;
-    for (int i = 0; i < 5; i++)
+    // 1. write table
+    for (int i = 0; i < plays.size(); i++)
     {
-        hash[genres[i]] = std::make_pair(i, plays[i]);
+        string gen = genres[i];
+        int play = plays[i];
+        pair<int, int> tp = {play, i};
+        table[gen].push_back(tp);
+        play_total[gen] += play;
     }
 
-    std::cout << hash["classic"].second << std::endl; // 출력: 1
+    // 2. sort
+    vector<pair<string, int>> plays_list(play_total.begin(), play_total.end());
+    sort(plays_list.begin(), plays_list.end(), cmp);
+
+    // 3. write answer
+    vector<int> answer;
+    for (int i = 0; i < plays_list.size(); i++)
+    {
+        string gen = plays_list[i].first;
+        sort(table[gen].begin(), table[gen].end());
+        answer.push_back(table[gen][0].second);
+        if (table[gen].size() > 1)
+        {
+            answer.push_back(table[gen][1].second);
+        }
+    }
+
+    return answer;
 }

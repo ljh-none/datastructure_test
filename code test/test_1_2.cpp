@@ -1,3 +1,17 @@
+/*
+nCr 계산하기
+-> 팩토리얼 구현
+
+방법 1. 반복문 -> 반복문으로 팩토리얼 구현 시 오버플로우
+방법 2. 재귀 << 이게있었네. 얘는 이미 구현해봄
+방법 3. 점화식 -> 이차원 배열의 동적 계획법
+
+이항계수는 동적계획법으로
+동적계획법은 아주 어렵게는 안나옴
+피보나치수열, 행렬곱셈 같은거
+
+
+*/
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -85,21 +99,3 @@ int main()
     comb3(0, n, r, 0, buf);
     cout << "total : " << total << endl;
 }
-
-/*
-n : 6, r : 3
-        start   end     index   r
-get     0       5       0       3
-for     i = 0; i <= 5 && 6-i >= 3 -> 0 1 2 3 -> 0
-get     1       5       1       3
-for     i=1; i <=5 && 6-i >= 2 -> 1 2 3 4 -> 1
-get     2       5       2       3
-for     i=2; i <=5 && 6 - i >=1 -> 2 3 4 5 -> 2
-get     3       5       3       3
-for     index == r, print, 32 -> 3
-get     4       5       3       3
-        index == r, print, 32 -> 4
-get     5       5       3       3
-        index == r, print, 32 -> 5
-
-*/

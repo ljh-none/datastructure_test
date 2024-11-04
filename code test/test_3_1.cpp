@@ -12,22 +12,37 @@ value : 참가자의 명수
 동명이인
 
 */
+#include <string>
+#include <vector>
+#include <map>
 
+using namespace std;
 
-#include <stdlib.h>
-#include <stdio.h>
-
-
-
-
-char *solution1(char *participant, char *completion, int length)
+string solution(vector<string> participant, vector<string> completion)
 {
-    char *failed;
-    int failed_index = 0;
-    //make hash table with participant and completion
-    for (int i = 0; i < length; i++)
+    map<string, int> table;
+    for (int i = 0; i < participant.size(); i++)
     {
-        
+        if (table[participant[i]] > 0)
+        {
+            table[participant[i]]++;
+        }
+        else
+        {
+            table[participant[i]] = 1;
+        }
     }
-    return failed;
+
+    for (int i = 0; i < completion.size(); i++)
+    {
+        table[completion[i]]--;
+    }
+
+    for (int i = 0; i < participant.size(); i++)
+    {
+        if (table[participant[i]] > 0)
+            return participant[i];
+    }
+
+    return "";
 }

@@ -3,7 +3,7 @@
 
 struct Node
 {
-    int data;
+    int value;
     struct Node *next; // struct Node 타입의 variable의 주소 저장
 };
 
@@ -13,7 +13,7 @@ void print_list(struct Node *head)
     struct Node *current = head;
     while (current != NULL)
     {
-        printf("value : %d\n", current->data);
+        printf("value : %d\n", current->value);
         current = current->next;
     }
 }
@@ -21,7 +21,7 @@ void print_list(struct Node *head)
 struct Node *initialize()
 {
     struct Node *head = malloc(sizeof(struct Node));
-    head->data = -1;
+    head->value = -1;
     head->next = NULL;
     return head;
 }
@@ -41,7 +41,7 @@ void insert_head(struct Node **head_p, int data)
 
     // 2. 새 node를 생성합니다.
     struct Node *node = malloc(sizeof(struct Node));
-    node->data = data;
+    node->value = data;
 
     // 3. 연결 작업을 합니다.
     node->next = *head_p; // 새 노드를 기존 head에 연결
@@ -78,9 +78,9 @@ void insert_middle(struct Node **head_p, int pos, int data)
     }
 
     // 2. 교체 작업
-    printf("insert between %d and ~\n", current->data);
+    printf("insert between %d and ~\n", current->value);
     struct Node *node = malloc(sizeof(struct Node));
-    node->data = data;
+    node->value = data;
     node->next = current->next;
     current->next = node;
     return;
@@ -94,11 +94,11 @@ void insert_tail(struct Node *head, int data)
     {
         current = current->next;
     }
-    printf("insert after %d\n", current->data);
+    printf("insert after %d\n", current->value);
 
     // node generate
     struct Node *node = malloc(sizeof(struct Node));
-    node->data = data;
+    node->value = data;
     node->next = NULL;
 
     // connect
@@ -112,7 +112,7 @@ void search(struct Node *head, int data)
     struct Node *current = head;
     while (current->next != NULL)
     {
-        if (current->data == data)
+        if (current->value == data)
         {
             printf("find it!\n");
             return;

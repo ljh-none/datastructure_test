@@ -19,12 +19,55 @@ key가 될 값 : 안바뀌는거, 중복이 거의 없는 거
 
 */
 
+#include <sstream>
 #include <string>
 #include <vector>
-#include <sstream>
-#include <unordered_map>
+#include <map>
 
 using namespace std;
+
+vector<string> solution(vector<string> record)
+{
+    map<string, string> table_nickname;
+
+    for (int i = 0; i < record.size(); i++)
+    {
+        istringstream iss(record[i]);
+        string instruction;
+        iss >> instruction;
+        if (instruction == "Leave")
+            continue;
+        string id;
+        iss >> id;
+        string nickname;
+        iss >> nickname;
+
+        table_nickname[id] = nickname;
+    }
+
+    vector<string> answer;
+    for (int i = 0; i < record.size(); i++)
+    {
+        istringstream iss(record[i]);
+        string instruction;
+        iss >> instruction;
+        string id;
+        iss >> id;
+        if (instruction == "Enter")
+        {
+            answer.push_back(table_nickname[id] + "님이 들어왔습니다.");
+        }
+        else if (instruction == "Leave")
+        {
+            answer.push_back(table_nickname[id] + "님이 나갔습니다.");
+        }
+        else
+        {
+            continue;
+        }
+    }
+    return answer;
+}
 
 int isFirstEnter(string id, string nickname, unordered_map<string, string> id_nickMap)
 {
@@ -37,7 +80,7 @@ int isFirstEnter(string id, string nickname, unordered_map<string, string> id_ni
     // 2. answer에 추가
 }
 
-vector<string> solution(vector<string> record)
+vector<string> solution_legacy(vector<string> record)
 {
     // record : 채팅방에 들어오고 나가거나, 닉네임을 변경한 기록이 담긴 문자열 배열
     // -> instruction / id / (nickname)

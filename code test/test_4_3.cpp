@@ -20,8 +20,8 @@ amount의 i번째 데이터에 기록된 판매액을 누가 판매했는지 기
 
 모범
 원 단위 절사 -> 소숫점 버림
-
-
+hash 1. child - parent -> key : enrol, value : referral, 상향식
+hash 2 seller - amount -> key : name, value : 0, + amount
 
 */
 
