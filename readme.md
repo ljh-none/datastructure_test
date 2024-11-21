@@ -1,11 +1,11 @@
 # DSA
 - Time/Space complextity
 - NP problem
-- Data structure
-- Algorithm
+- DSA
 
-## Complexity
-- time complexity : 거대한 미지수에 대한 연산 횟수만 고려
+# Complexity
+### time complexity
+거대한 미지수에 대한 연산 횟수만 고려
 기본적인 연산 횟수(비교, 할당, 계산, R/W 등)를 입력 크기인 n단위로 표현
 알고리즘의 효율성을 나타내는 지표
 최악과 평균의 경우만 생각
@@ -13,10 +13,10 @@
 시간 복잡도를 쓰는 이유는 거대한 시스템에서 n이 충분히 클 때의 상황을 보려는 것. 따라서 계수의 영향이 미미.
 => 즉, 미지수에 대한 연산 횟수만 고려한다!
 
-- space complexity
+### space complexity
 사용되는 메모리 크기
 
-- 지표 표기법
+### 지표 표기법
 1. big oh : O(n), 상한선
 2. big omega : Ω(n), 하한선
 3. big theta : Θ(n), 유사한 증가율
@@ -29,43 +29,43 @@ Big oh : f(x) ≤ ng(x) 인 n과 x0가 존재 -> f(x)=O(g(x))
 Big omega : f(x) ≥ ng(x) 인 n과 x0가 존재 -> f(x)=Ω(g(x))
 Big theta : ng(x) ≥ f(x) ≥ mg(x) 인 n, m, x0가 존재 -> f(x) = Θ(g(x))
 
-- 자주 사용되는 함수 별 그래프
-![alt text](images/image.png)
+- 자주 사용되는 지표 별 그래프
+![alt text](.images/image.png)
 
-입력 크기 n에 대해 sin(n) + 1의 θ 표기를 구할 수 있는가? 그 이유를 설명하시오.
 
-## NP problem
-#### summary
-p-time
-NP problem
-ㄴ P problem
-ㄴ NP-complete problem
-NP-hard problem
+# NP problem
+### summary
+1. definition
+2. NP problem
+    P problem
+    NP-complete problem
+3. NP-hard problem
+4. decision problem
 
-- deterministic
+### 1. definition
 deterministic algorithm : 같은 입력에 대해 항상 같은 결과를 출력하는 알고리즘
 Nondeterministic algorithm : 같은 입력일지라도 출력 결과가 다른 알고리즘. 즉 답이 하나로 정해져있지 않음.
 
-- polynomail time.
-O(n^k * log_l(n))처럼 T.C를 다항식 시간으로 표현 가능한 시간
+polynomail time.
+-> O(n^k * log_l(n))처럼 T.C를 다항식 시간으로 표현 가능한 시간
 
-#### NP
+### 2. NP problem
+- np problem
 non-deterministic p-time problem.
 1. 문제를 p-time 내에 해결할 알고리즘이 없는 문제.
 2. solution이 주어졌을 때, 이 문제의 정답이 solution이 맞는지 p-time 내에 검증 가능한 문제 
 = 해당 문제를 decision problem으로 표현할 수 있고, p-time 내에 해결 가능하다.
 
-#### P
+- p problem
 p-time problem
 deterministic 알고리즘으로 p-time 내에 풀리는 문제 (ex|지금까지의 대부분 문제)
 
-#### NP complete problem
+- NP complete problem
 1. 문제가 p-time 내로는 해결할 수 없고, 일반적으로 exponential time이 걸리는 문제.
 -> 근사, 확률, 휴리스틱 등의 방법으로 정답에 가까운 해는 찾을 수 있음.
 2. solution이 주어졌을 때, 이 문제의 정답이 solution이 맞는지 p-time 내에 검증 가능한 문제 
 -> 해당 문제를 decision problem으로 표현할 수 있고, p-time 내에 해결 가능하다.
 3. 모든 NP 문제는 p-time 내에 모든 NP-complete 문제로 변환 가능하다.
-
 => NP complete = NP & NP-hard
 
 - reduction
@@ -75,13 +75,13 @@ deterministic 알고리즘으로 p-time 내에 풀리는 문제 (ex|지금까지
 4. 문제 B의 해를 문제 A의 해로 변환
 
 - 예제
-![alt text](images/image6.jpeg)
+![alt text](.images/image6.jpeg)
 
-#### NP hard problem
+### 3. NP hard problem
 NP에 속하는 모든 문제들과 어렵거나 그 이상. 따라서 NP 문제일 수도 있고 아닐 수도 있음.
 모든 NP hard 문제가 어떤 다른 NP hard 문제로 변환될 수 있다.
 
-#### decision problem
+### 4. decision problem
 answer가 yes or no인 문제.
 
 - 변환 과정
@@ -101,55 +101,83 @@ answer가 yes or no인 문제.
 4. weight 계산 최대 n번 + value 계산 최대 n번 = O(n+n)
 5. p-time이 도출되었으므로 0-1 knapsack은 NP-problem이다.
 
-## Data Structure
-- array, linked list
--> two pointer, sliding window
-투 포인터 알고리즘의 일반적인 수행 절차
-① 리스트의 시작 위치에 첫 번째 포인터와 두 번째 포인터를 설정
-② 두 포인터 사이의 구간 내 데이터를 조사하고 조건을 확인
-➢ 조건을 만족할 경우, 원하는 결과를 얻었으므로 알고리즘을 종료
-➢ 조건을 만족하지 않을 경우, 첫 번째 또는 두 번째 포인터를 이동
-③ 다시 2번 단계로 돌아가 반복
-④ 포인터가 리스트의 범위를 벗어나면 알고리즘을 종료
-- stack
-LIFO
-DFS, back tracking, recursion
-- queue
-FIFO
-BFS, 대기열, 순차 처리
-- matrix, Grid
-- hash
+# DSA
+- Linear Data Structure
+    array
+    linked list
+    stack : DFS, back tracking, recursion
+    queue : BFS, 대기열, 순차 처리
 
-- heap
-binary heap? -> index만으로 트리구성가능
-➢ 이진 힙 (Binary Heap)
-– 힙 조건을 만족하는 완전 이진 트리 (Complete Binary Tree)
-– 힙 조건: 각 노드의 우선 순위(priority)가 자식 노드의 우선 순위보다 높다.
-– 최대 힙(Maximum Heap): 가장 큰 값이 루트에 저장
-– 최소 힙(Minimum Heap): 가장 작은 값이 루트에 저장
-- string
-- graph, tree
-- set
-- map 
+    two pointer
+    sliding window
 
-## Algorithm
-##### divide & conquer
-divide input(size n) -> subproblem(n/b) * a  
-conquer : 문제를 해결  
+- Non-linear Data Structure
+    tree
+    heap
+    graph
+    set
+    hash map
+    matrix
+    Grid
 
-1. merge sort : for linked list, multi processor 병렬화
-2. quick sort : good for large input
-3. insert sort
-4. binary search
-5. select problem(value search) : find median at data analyzation
-6. closest pair
+- divide & conquer
 
-- 고려 사항
-1. 부적절한 경우
-input < sum of sub problem's input 일 때
-Ex | n 번째의 피보나치 수를 구하기 - 사실상 n의 값 자체가 입력 크기이므로
-2. 문제 특성 상 취합 과정이 효과적일 수 있다.
-Ex | most of geometry problem
+- sort
+    1. merge sort : for linked list, multi processor 병렬화
+    2. quick sort : good for large input
+    3. insert sort
+    4. binary search
+    5. select problem(value search) : find median at data analyzation
+    6. closest pair
+
+- greedy
+    1. minimum spanning tree
+    2. shortest path
+    3. fractional Knapsack
+    4. set cover
+    5. job scheduling 
+    6. Huffman compression
+
+- dynamic programming
+    1. All Pairs Shortest Paths
+    2. chained multiplex mul
+    3. edit distance
+    4. 0-1 knap problem
+
+- search
+    DFS
+    BFS
+
+- Backtracking
+- Approximation
+- union-find
+
+
+ 
+
+
+### Find answer
+백트래킹 기법
+분기 한정 기법
+-> 정확한 최적 해 찾는다
+
+유전자 알고리즘
+모의 담금질 기법
+-> 최대한 좋은 해를 찾는다
+
+##### 백트래킹
+update best solution
+stop condition
+    if current's cost > best cost -> stop
+recursive control
+
+genetic
+큰구조는 간단하나 구현 시 생각은 많이 해야 함.
+early stop 필요
+
+
+
+# legacy
 
 ##### greedy
 가능한 해들 중에서 가장 좋은 (최대 또는 최소) 해를 찾는다 -> 최적화
@@ -364,7 +392,7 @@ CCTV 카메라의 최적 배치 (Art Gallery 문제) 등
 
 
 
-# 유니온파인드연산
+# memo
 분리집합 : 교집합 x
 union : 합집합 연산
 find : 특정 원소가 속한 집합의 root node 반환
@@ -379,3 +407,37 @@ http로 이미지를 전송하는 방법
 
 클럽 등록과 그걸로 교차검증
 송신 전 전체 데이터 로그 출력
+
+-> two pointer, sliding window
+투 포인터 알고리즘의 일반적인 수행 절차
+① 리스트의 시작 위치에 첫 번째 포인터와 두 번째 포인터를 설정
+② 두 포인터 사이의 구간 내 데이터를 조사하고 조건을 확인
+➢ 조건을 만족할 경우, 원하는 결과를 얻었으므로 알고리즘을 종료
+➢ 조건을 만족하지 않을 경우, 첫 번째 또는 두 번째 포인터를 이동
+③ 다시 2번 단계로 돌아가 반복
+④ 포인터가 리스트의 범위를 벗어나면 알고리즘을 종료
+
+
+비선형 자료구조는 데이터가 계층적(Hierarchical) 또는 네트워크(Network) 형태로 조직화된 구조
+
+- heap
+binary heap? -> index만으로 트리구성가능
+➢ 이진 힙 (Binary Heap)
+– 힙 조건을 만족하는 완전 이진 트리 (Complete Binary Tree)
+– 힙 조건: 각 노드의 우선 순위(priority)가 자식 노드의 우선 순위보다 높다.
+– 최대 힙(Maximum Heap): 가장 큰 값이 루트에 저장
+– 최소 힙(Minimum Heap): 가장 작은 값이 루트에 저장
+
+
+
+t.c
+입력 크기 n에 대해 sin(n) + 1의 θ 표기를 구할 수 있는가? 그 이유를 설명하시오.
+
+divide input(size n) -> subproblem(n/b) * a  
+conquer : 문제를 해결  
+- 고려 사항
+1. 부적절한 경우
+input < sum of sub problem's input 일 때
+Ex | n 번째의 피보나치 수를 구하기 - 사실상 n의 값 자체가 입력 크기이므로
+2. 문제 특성 상 취합 과정이 효과적일 수 있다.
+Ex | most of geometry problem
