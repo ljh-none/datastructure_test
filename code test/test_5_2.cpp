@@ -23,6 +23,17 @@ edge count : maximum N-1
 크루스컬 : 간선 오름차순 정렬 후 greedy하게 구축. 이 때 사이클 형성 여부 체크(union find)
 프리마 : 정점 중심 구축. 구축 시 사이클이 형성되지 않는다. 
 
+그래프 : 정점과 간선의 집합
+
+* 최소 비용이 존재한다(을 구해라)는 말은 cycle이 형성되면 성립하지 않는다.
+
+union find
+disjoint set을 구축하기 위한 트리 자료구조
+union 연산 & find 연산
+union : 합집합
+
+tree size : node's number
+tree height : tree's depth
 */
 
 #include <string>
