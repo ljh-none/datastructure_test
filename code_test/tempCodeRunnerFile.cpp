@@ -58,7 +58,7 @@ bool check_index(pair<int, int> next, int length)
     return true;
 }
 
-bool isCorner(pair<int, int> before, pair<int, int> next)
+bool check_corner(pair<int, int> before, pair<int, int> next)
 {
     pair<int, int> lt = {before.first - 1, before.second - 1};
     pair<int, int> rt = {before.first - 1, before.second + 1};
@@ -106,7 +106,7 @@ int solution(vector<vector<int>> board)
             newone.update_position(next); // 좌표 갱신 및 방문 체크
 
             // 비용 갱신을 위한 코너 체크
-            if (isCorner(before, newone.current))
+            if (check_corner(before, newone.current))
             {
                 newone.total += 500;
             }
@@ -128,7 +128,7 @@ int solution(vector<vector<int>> board)
             newone.update_position(next); // 좌표 갱신 및 방문 체크
 
             // 비용 갱신을 위한 코너 체크
-            if (isCorner(before, newone.current))
+            if (check_corner(before, newone.current))
             {
                 newone.total += 500;
             }
@@ -150,7 +150,7 @@ int solution(vector<vector<int>> board)
             newone.update_position(next); // 좌표 갱신 및 방문 체크
 
             // 비용 갱신을 위한 코너 체크
-            if (isCorner(before, newone.current))
+            if (check_corner(before, newone.current))
             {
                 newone.total += 500;
             }
@@ -172,7 +172,7 @@ int solution(vector<vector<int>> board)
             newone.update_position(next); // 좌표 갱신 및 방문 체크
 
             // 비용 갱신을 위한 코너 체크
-            if (isCorner(before, newone.current))
+            if (check_corner(before, newone.current))
             {
                 newone.total += 500;
             }

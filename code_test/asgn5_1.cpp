@@ -21,14 +21,15 @@ N x N 크기의 정사각형, 3 <= N <= 25
 
 using namespace std;
 
+// 시작점 ~ 도착점 까지의 경로 structure
 struct Route
 {
-    int total;
-    pair<int, int> pos;
+    int total;  //total value
+    pair<int, int> pos; //현재 위치. 
     map<pair<int, int>, bool> isVisited;
 };
 
-bool isCorner(pair<int, int> before, pair<int, int> newone)
+bool check_corner(pair<int, int> before, pair<int, int> newone)
 {
     pair<int, int> lt = {before.first - 1, before.second - 1};
     pair<int, int> rt = {before.first - 1, before.second + 1};
@@ -64,7 +65,7 @@ int solution(vector<vector<int>> board)
             Route newone = route;
             newone.pos.first--;
 
-            if (isCorner(before, newone.pos))
+            if (check_corner(before, newone.pos))
             {
                 newone.total += 500;
             }
@@ -83,7 +84,7 @@ int solution(vector<vector<int>> board)
             Route newone = route;
             newone.pos.first++;
 
-            if (isCorner(before, newone.pos))
+            if (check_corner(before, newone.pos))
             {
                 newone.total += 500;
             }
@@ -103,7 +104,7 @@ int solution(vector<vector<int>> board)
             Route newone = route;
             newone.pos.second--;
 
-            if (isCorner(before, newone.pos))
+            if (check_corner(before, newone.pos))
             {
                 newone.total += 500;
             }

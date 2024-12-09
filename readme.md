@@ -108,9 +108,6 @@ answer가 yes or no인 문제.
     stack : DFS, back tracking, recursion
     queue : BFS, 대기열, 순차 처리
 
-    two pointer
-    sliding window
-
 - Non-linear Data Structure
     tree
     heap
@@ -120,41 +117,59 @@ answer가 yes or no인 문제.
     matrix
     Grid
 
-- divide & conquer
+- Algorithm Strategies
+    two pointer & sliding window
+    divide & conquer
+    Greedy
+    Dynamic Programming
+    Backtracking
+    Branch and Bound
+    Hill Climbing
+    Machine Learning
 
-- sort
-    1. merge sort : for linked list, multi processor 병렬화
-    2. quick sort : good for large input
-    3. insert sort
-    4. binary search
-    5. select problem(value search) : find median at data analyzation
-    6. closest pair
+- Purpose of Algorithm
+    - sort
+        merge sort : for linked list, multi processor 병렬화
+        quick sort : good for large input
+        insert sort
 
-- greedy
-    1. minimum spanning tree
-    2. shortest path
-    3. fractional Knapsack
-    4. set cover
-    5. job scheduling 
-    6. Huffman compression
+    - search
+        DFS
+        BFS
+        binary search (D&Q)
 
-- dynamic programming
-    1. All Pairs Shortest Paths
-    2. chained multiplex mul
-    3. edit distance
-    4. 0-1 knap problem
+    - Graph
+        - union-find
+        - minimum spanning tree
+            Kruskal
+            Prim
+        - shortest path
+            Dijkstra
+            Bellman-Ford
+        - All Pairs Shortest Path
+            Floyd-Warshall
 
-- search
-    DFS
-    BFS
+    - Optimization
+        fractional Knapsack
+        0-1 knap problem
+        Set Cover
+        Job Scheduling
 
-- Backtracking
-- Approximation
-- union-find
+    - mathematics
+        chained multiplex mul
 
+    - Data Compression
+        Huffman compression
+
+    - Geometric Algorithms
+        Closest Pair
+
+    - string (prefix, postfix 등)
+        edit distance
 
  
 
+# legacy
 
 ### Find answer
 백트래킹 기법
@@ -174,10 +189,6 @@ recursive control
 genetic
 큰구조는 간단하나 구현 시 생각은 많이 해야 함.
 early stop 필요
-
-
-
-# legacy
 
 ##### greedy
 가능한 해들 중에서 가장 좋은 (최대 또는 최소) 해를 찾는다 -> 최적화

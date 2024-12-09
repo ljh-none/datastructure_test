@@ -1,5 +1,3 @@
-// 일단 정답 나온 코드의 복사본
-
 /*
 N x N 크기의 정사각형, 3 <= N <= 25
 0 : 칸이 비어 있음
@@ -14,6 +12,29 @@ N x N 크기의 정사각형, 3 <= N <= 25
 
 경우의 수 queue
 
+
+/usr/bin/clang++ -std=c++17 -o "/Users/Ljh/VScode/DSA/code_test/asgn5"
+"/Users/Ljh/VScode/DSA/code_test/asgn5.cpp" 
+&& /Users/Ljh/VScode/DSA/code_test/asgn5
+
+
+
+모범
+
+이전의 진행방과 현재의 진행방향이 다른 경우
+1. 정반대
+되돌아가는 코스, 체크 x
+2. 나머지 다 코너
+
+진행 방향에 대한 정보 를 queue에 집어넣어야 한다.
+
+공간 탐색 시 필요한 기능
+1. 주어진 공간을 벗어나는 경우를 체크하는 기능
+2. 주어진 공간 내에서 탐색 가능한지를 체크하는 기능
+3. 탐색 비용을 계산하는 기능
+
+
+
 */
 
 #include <string>
@@ -24,14 +45,14 @@ N x N 크기의 정사각형, 3 <= N <= 25
 
 using namespace std;
 
+// 시작점 ~ 도착점 까지의 경로
 class Route
 {
 public:
     int total;                         // 지금까지의 경로 총합 비용
-    pair<int, int> current;            // 경로의 끝 좌표. 이 좌표가 도착점이 되면 리턴
+    pair<int, int> current;            // 경로의 끝 좌표(현재 좌표). 이 좌표가 도착점이 되면 하나의 경로 완성
     map<pair<int, int>, bool> visited; // 방문 여부 체크
-    pair<int, int> before = {0, 0};    // next의 코너 체크를 위한 두 걸음 뒤의 위치
-    int flag = 0;
+    pair<int, int> before = {0, 0};    // 코너 체크를 위한 두 걸음 뒤의 위치
 
     Route(int total, pair<int, int> pos)
     {
@@ -42,11 +63,7 @@ public:
     bool check_visited(pair<int, int> next)
     {
         if (visited[next] == false)
-        {
-            // cout << "not visited" << endl;
             return false;
-        }
-        // cout << "visited, return" << endl;
         return true;
     }
 
@@ -60,21 +77,14 @@ public:
 bool check_index(pair<int, int> next, int length)
 {
     if (next.first < 0 || next.first >= length)
-    {
-        // cout << "index check false, return" << endl;
         return false;
-    }
 
     if (next.second < 0 || next.second >= length)
-    {
-        // cout << "index check false, return" << endl;
         return false;
-    }
-    // cout << "index check true" << endl;
     return true;
 }
 
-bool isCorner(pair<int, int> before, pair<int, int> next)
+bool check_corner(pair<int, int> before, pair<int, int> next)
 {
     pair<int, int> lt = {before.first - 1, before.second - 1};
     pair<int, int> rt = {before.first - 1, before.second + 1};
@@ -87,26 +97,21 @@ bool isCorner(pair<int, int> before, pair<int, int> next)
 int solution(vector<vector<int>> board)
 {
     Route result(1000000000, {0, 0}); // 최소 비용의 route를 담을 변수
-    queue<Route> que;                 // BFS를 위한 대기열
-    int length = board.size();        // 정사각형의 변의 길이
-    int flag = 0;
+    queue<Route> que;                 // BFS를 위한 queue
+    int length = board.size();
 
     Route start(0, {0, 0}); // 시작점 설정
     start.visited[{0, 0}] = true;
+
     pair<int, int> end = {length - 1, length - 1}; // 도착점 설정
 
-    start.before = start.current;
-
     que.push(start); // BFS start
-    for (int i = 0; i < 400; i++)
+    while (!que.empty())
     {
-        Route route = que.front();
-        cout << "\ncurrent : " << route.current.first << "," << route.current.second;
-        cout << " actions | flag : " << route.flag << "  ";
-        cout << " before : " << route.before.first << "," << route.before.second << "  ";
+        Route route = que.front(); // 현재 경로를 받아온다.
         pair<int, int> next;
 
-        // 도착점일 경우 비용 갱신 후 다른 경우의 수 탐색
+        // 도착점일 경우 result 갱신 후 다른 경우의 수 탐색
         if (route.current.first == end.first &&
             route.current.second == end.second &&
             route.total < result.total)
@@ -117,134 +122,82 @@ int solution(vector<vector<int>> board)
             continue;
         }
 
-        // 인덱스 체크, 요소 체크, 방문여부 체크 후 이동
+        // 1. 상하좌우에 따른 다음 좌표 next 갱신
+        // 2. 인덱스 체크, board의 원소 체크, 방문여부 체크
+        // 3. next 좌표로 이동한 새로운 경로를 queue에 삽입
 
         // 상
-        // cout << "== up case ===" << endl;
         next = {route.current.first - 1, route.current.second};
         if (check_index(next, length) &&
             board[next.first][next.second] == 0 &&
             !route.check_visited(next))
         {
-            // cout << "move up" << endl;
+            // 새 경로 생성
             Route newone = route;
-            newone.update_position(next); // 좌표 갱신 및 방문 체크
-            cout << "  next : " << newone.current.first << "," << newone.current.second;
 
-            // 비용 갱신을 위한 코너 체크
+            // 이동 및 방문 체크
+            newone.update_position(next);
+
+            // 비용 갱신
             newone.total += 100;
-            if (isCorner(newone.before, newone.current))
-            {
-                cout << "turn corner!" << endl;
+            if (check_corner(newone.before, newone.current))
                 newone.total += 500;
-            }
 
+            // 이전 좌표 정보 저장
             newone.before = route.current;
+
+            // queue에 푸쉬
             que.push(newone);
         }
 
         // 하
-        // cout << "== down case ===" << endl;
         next = {route.current.first + 1, route.current.second};
-        // cout << "board element : " << board[next.first][next.second] << endl;
         if (check_index(next, length) &&
             board[next.first][next.second] == 0 &&
             !route.check_visited(next))
         {
-            // cout << "move down" << endl;
             Route newone = route;
-            newone.update_position(next); // 좌표 갱신 및 방문 체크
-            cout << "  next : " << newone.current.first << "," << newone.current.second;
-
-            // 비용 갱신을 위한 코너 체크
+            newone.update_position(next);
             newone.total += 100;
-            if (isCorner(newone.before, newone.current))
-            {
-                cout << "turn corner!" << endl;
+            if (check_corner(newone.before, newone.current))
                 newone.total += 500;
-            }
-
             newone.before = route.current;
             que.push(newone);
         }
 
         // 좌
-        // cout << "== left case ===" << endl;
         next = {route.current.first, route.current.second - 1};
         if (check_index(next, length) &&
             board[next.first][next.second] == 0 &&
             !route.check_visited(next))
         {
-            // cout << "move left" << endl;
             Route newone = route;
-            newone.update_position(next); // 좌표 갱신 및 방문 체크
-            cout << "  next : " << newone.current.first << "," << newone.current.second;
-
-            // 비용 갱신을 위한 코너 체크
+            newone.update_position(next);
             newone.total += 100;
-            if (isCorner(newone.before, newone.current))
-            {
-                cout << "turn corner!" << endl;
+            if (check_corner(newone.before, newone.current))
                 newone.total += 500;
-            }
-
             newone.before = route.current;
             que.push(newone);
         }
 
         // 우
-        // cout << "== right case ===" << endl;
         next = {route.current.first, route.current.second + 1};
         if (check_index(next, length) &&
             board[next.first][next.second] == 0 &&
             !route.check_visited(next))
         {
-            // cout << "move right" << endl;
             Route newone = route;
-            newone.update_position(next); // 좌표 갱신 및 방문 체크
-            cout << "  next : " << newone.current.first << "," << newone.current.second;
-
-            if (flag == 0)
-            {
-                flag = 1;
-                newone.flag = 1;
-            }
-
-            // 비용 갱신을 위한 코너 체크
+            newone.update_position(next);
             newone.total += 100;
-            if (isCorner(newone.before, newone.current))
-            {
-                cout << "turn corner!" << endl;
+            if (check_corner(newone.before, newone.current))
                 newone.total += 500;
-            }
-
             newone.before = route.current;
             que.push(newone);
         }
 
-        // que 제거
+        // 현재 경로를 queue에서 제거
         que.pop();
     }
 
     return result.total;
-}
-
-int main()
-{
-    // 테스트 케이스를 생성합니다.
-    vector<vector<int>> board = {
-        {0, 0, 0, 0, 0, 0, 0, 1},
-        {0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 1, 0, 0},
-        {0, 0, 0, 0, 1, 0, 0, 0},
-        {0, 0, 0, 1, 0, 0, 0, 1},
-        {0, 0, 1, 0, 0, 0, 1, 0},
-        {0, 1, 0, 0, 0, 1, 0, 0},
-        {1, 0, 0, 0, 0, 0, 0, 0}};
-
-    // solution 함수 호출 (여기서는 구현된 solution 함수가 있어야 합니다)
-    cout << "    Test Case     \n"
-         << solution(board) << endl; // 예상 출력은 최단 비용
-
-    return 0;
 }

@@ -76,7 +76,7 @@ bool check_index(pair<int, int> next, int length)
     return true;
 }
 
-bool isCorner(pair<int, int> before, pair<int, int> next)
+bool check_corner(pair<int, int> before, pair<int, int> next)
 {
     pair<int, int> lt = {before.first - 1, before.second - 1};
     pair<int, int> rt = {before.first - 1, before.second + 1};
@@ -141,7 +141,7 @@ int solution(vector<vector<int>> board)
 
             // 비용 갱신을 위한 코너 체크
             newone.total += 100;
-            if (isCorner(newone.before, newone.current))
+            if (check_corner(newone.before, newone.current))
             {
                 cout << "turn corner!" << endl;
                 newone.total += 500;
@@ -171,7 +171,7 @@ int solution(vector<vector<int>> board)
 
             // 비용 갱신을 위한 코너 체크
             newone.total += 100;
-            if (isCorner(newone.before, newone.current))
+            if (check_corner(newone.before, newone.current))
             {
                 cout << "turn corner!" << endl;
                 newone.total += 500;
@@ -195,7 +195,7 @@ int solution(vector<vector<int>> board)
 
             // 비용 갱신을 위한 코너 체크
             newone.total += 100;
-            if (isCorner(newone.before, newone.current))
+            if (check_corner(newone.before, newone.current))
             {
                 cout << "turn corner!" << endl;
                 newone.total += 500;
@@ -219,7 +219,7 @@ int solution(vector<vector<int>> board)
 
             // 비용 갱신을 위한 코너 체크
             newone.total += 100;
-            if (isCorner(newone.before, newone.current))
+            if (check_corner(newone.before, newone.current))
             {
                 cout << "turn corner!" << endl;
                 newone.total += 500;

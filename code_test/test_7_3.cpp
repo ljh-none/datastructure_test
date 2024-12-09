@@ -1,3 +1,11 @@
+/*
+DFS
+
+BFS : 최적화
+
+*/
+
+
 #include <string>
 #include <vector>
 #include <queue>
@@ -35,40 +43,6 @@ int solution(int n, vector<vector<int>> computers)
     }
 
     return count;
-
-    // for (int i = 0; i < n; i++)
-    // {
-    //     if (computers[i][i] == 0)
-    //     {
-    //         // 이미 집합에 포함된 노드는 패스
-    //         continue;
-    //     }
-
-    //     queue<int> local_set;
-    //     local_set.push(i);
-
-    //     while (!local_set.empty())
-    //     {
-    //         int node = local_set.front();
-    //         if(computers[node][node] == 0)
-    //         {
-    //             continue;
-    //         }
-    //         computers[node][node] = 0;
-    //         for (int j = 0; j < computers[node].size(); j++)
-    //         {
-    //             if (computers[node][j] == 1)
-    //             {
-    //                 local_set.push(j);
-    //             }
-    //         }
-    //         local_set.pop();
-    //     }
-
-    //     count++;
-    // }
-
-    // return count;
 }
 
 /*
